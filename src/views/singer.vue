@@ -7,7 +7,7 @@
     <div ref="letter" @touchmove.stop.prevent="touchMove" v-if="letters.length" class="letter-wrapper">
       <div :class="{active:letterIndex===index}" @click="bindClick(index)" v-for="(item, index) in letters" :key="index">{{item.slice(0,1)}}</div>
     </div>
-    <div v-show="fixedTitle" class="title-fixed">{{fixedTitle}}</div>
+    <div ref="fixedtitle" v-show="fixedTitle" class="title-fixed">{{fixedTitle}}</div>
   </div>
 </template>
 
@@ -24,7 +24,9 @@ export default {
       artists: [],
       listHeight: [],
       fixedTitle: '',
-      letterIndex: 0
+      letterIndex: 0,
+      titleHeight: 0,
+      diff: 0
     }
   },
   computed: {
@@ -49,15 +51,18 @@ export default {
         const height2 = this.listHeight[index + 1]
         if (index <= this.listHeight.length - 2 && scrollTop >= height - 1 && scrollTop < height2) {
           this.fixedTitle = this.letters[index]
+          this.diff = height2 - scrollTop
+          // console.log(this.diff)
           this.letterIndex = index
         }
       }
-    })
+    }, 100)
   },
   watch: {
     artists () {
       setTimeout(() => {
         const list = this.$refs.listGroup
+        this.titleHeight = list[0].children[0].clientHeight
         let height = 0
         this.listHeight.push(height)
         for (let i = 0; i < list.length; i++) {
@@ -65,6 +70,14 @@ export default {
           this.listHeight.push(height)
         }
       }, 100)
+    },
+    diff (newVal) {
+      if (newVal > 0 && newVal <= this.titleHeight) {
+        console.log(newVal)
+        this.$refs.fixedtitle.style.transform = `translate3d(0,${newVal - this.titleHeight}px,0)`
+      } else {
+        this.$refs.fixedtitle.style.transform = 'translate3d(0, 0, 0)'
+      }
     }
   },
   methods: {
