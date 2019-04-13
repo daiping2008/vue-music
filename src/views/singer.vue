@@ -5,7 +5,7 @@
       <v-singer v-for="d in item.items" :key="d.id" :data="d"></v-singer>
     </div>
     <div ref="letter" @touchmove.stop.prevent="touchMove" v-if="letters.length" class="letter-wrapper">
-      <div :class="{'active':letterIndex===index}" @click="bindClick(index)" v-for="(item, index) in letters" :key="index">{{item.slice(0,1)}}</div>
+      <div :class="{active:letterIndex===index}" @click="bindClick(index)" v-for="(item, index) in letters" :key="index">{{item.slice(0,1)}}</div>
     </div>
     <div v-show="fixedTitle" class="title-fixed">{{fixedTitle}}</div>
   </div>
@@ -58,7 +58,7 @@ export default {
     artists () {
       setTimeout(() => {
         const list = this.$refs.listGroup
-        let height = 0.1
+        let height = 0
         this.listHeight.push(height)
         for (let i = 0; i < list.length; i++) {
           height += list[i].clientHeight
@@ -71,18 +71,21 @@ export default {
     touchMove (e) {
       this.startY2 = e.touches[0].clientY
       const index = parseInt((this.startY2 - this.$refs.letter.offsetTop) / 20)
-      // console.log(this.startY2, this.startY2 - this.$refs.letter.offsetTop, index)
       this._scrollTo(index)
     },
     bindClick (index) {
       this._scrollTo(index)
       this.fixedTitle = this.letters[index]
     },
+
     _scrollTo (index) {
       // 检测index是否合法
       if (index < 0 || index >= this.listHeight.length) return
 
-      window.scrollTo(0, this.listHeight[index])
+      window.scrollTo({
+        top: this.listHeight[index],
+        bahavior: 'smooth'
+      })
       this.letterIndex = index
     },
     _normalizeArtists (artists) {
