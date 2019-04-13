@@ -1,4 +1,11 @@
 
+$ration: 375 / 10;
+
 @function px2rem($px) {
-  @return $px / (375 / 10) + rem
+  @return $px / $ration + rem
+}
+
+@mixin center() {
+  justify-content: center;
+  align-items: center;
 }
