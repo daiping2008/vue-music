@@ -6,6 +6,10 @@ class SearchModel extends HTTP {
     return this.request('/search/hot')
   }
 
+  getSearchSuggest (q) {
+    return this.request(`/search/suggest?keywords=${q}`)
+  }
+
   getHis () {
     return JSON.parse(localStorage.getItem(_CLOUD_MUSIC_HIS_))
   }

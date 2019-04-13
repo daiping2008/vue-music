@@ -1,6 +1,6 @@
 <template>
   <div class="search-wrapper">
-    <search-bar @bindIuput="bindSearch" class="search"></search-bar>
+    <search-bar :input="q" @bindIuput="bindSearch" class="search"></search-bar>
     <div>
       <h2 class="title">热门搜索</h2>
       <div class="content">
@@ -8,7 +8,7 @@
       </div>
       <h2 class="title">历史记录<i class="iconfont">&#xe626;</i></h2>
       <div class="his-content">
-        <div v-for="(item, index) in his" :key="index" class="his-item">{{item}}<i class="iconfont">&#xe61b;</i></div>
+        <div @click="bindSearch(item)" v-for="(item, index) in his" :key="index" class="his-item">{{item}}<i class="iconfont">&#xe61b;</i></div>
       </div>
     </div>
   </div>
@@ -35,7 +35,12 @@ export default {
   },
   methods: {
     bindSearch (value) {
+      this.q = value
       searchMoedl.setHis(value)
+      searchMoedl.getSearchSuggest(value)
+        .then(res => {
+          console.log(res)
+        })
     }
   },
   components: {

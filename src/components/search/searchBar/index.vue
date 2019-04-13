@@ -9,6 +9,7 @@
 </template>
 <script>
 export default {
+  props: ['input'],
   data () {
     return {
       q: ''
@@ -17,6 +18,11 @@ export default {
   methods: {
     bindKeyup () {
       this.$emit('bindIuput', this.q)
+    }
+  },
+  watch: {
+    input () {
+      this.q = this.input
     }
   }
 }
