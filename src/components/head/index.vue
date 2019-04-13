@@ -17,6 +17,7 @@ export default {
   width: 100%;
   height: px2rem(80);
   left: 0;
+  z-index: 999;
   background-color: $main-bg;
   color: $main-color-active;
   line-height: px2rem(80);

@@ -11,7 +11,7 @@
 
 <script>
 import VSwiper from '@/components/swiper'
-import VRecItem from '@/components/recommend/recItem'
+import VRecItem from '@/components/recommend/item'
 import VLoading from '@/components/loading'
 import RecomModel from '@/models/recom'
 const recomModel = new RecomModel()

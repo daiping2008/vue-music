@@ -7,8 +7,10 @@ import './assets/styles/global.scss'
 import './assets/styles/iconfont.scss'
 
 Vue.use(VueLazyload, {
+  preLoad: 1.3,
   err: './assets/images/error.png',
-  loading: './assets/images/loading.png'
+  loading: './assets/images/loading.png',
+  attempt: 1
 })
 
 Vue.config.productionTip = false

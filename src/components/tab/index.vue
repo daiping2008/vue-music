@@ -28,6 +28,7 @@ export default {
   width: 100%;
   height: px2rem(100);
   background-color: $main-bg;
+  z-index: 999;
   > div{
     flex: 1;
     display: flex;
@@ -50,12 +51,17 @@ export default {
         right: 0;
         width: 100%;
         height: px2rem(6);
-        background-color: $main-color-active;
+        background-color: transparent;
 
       }
     }
     &.active{
       color: $main-color-active;
+      span{
+        &::after{
+          background-color: $main-color-active;
+        }
+      }
     }
 
   }
