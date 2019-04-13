@@ -49,7 +49,6 @@ export default {
   position: absolute;
   left: 50%;
   top: px2rem(550);
-  transform: scale(.6);
 }
 .title{
   color: $main-color-active;

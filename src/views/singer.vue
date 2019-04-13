@@ -8,10 +8,12 @@
       <div :class="{active:letterIndex===index}" @click="bindClick(index)" v-for="(item, index) in letters" :key="index">{{item.slice(0,1)}}</div>
     </div>
     <div ref="fixedtitle" v-show="fixedTitle" class="title-fixed">{{fixedTitle}}</div>
+    <v-loading v-show="!artists.length" class="loading"></v-loading>
   </div>
 </template>
 
 <script>
+import VLoading from '@/components/loading'
 import VSinger from '@/components/singer/item'
 import SingerModel from '@/models/singer'
 import pinyin from 'pinyin'
@@ -139,7 +141,8 @@ export default {
     }
   },
   components: {
-    VSinger
+    VSinger,
+    VLoading
   }
 }
 </script>
@@ -179,5 +182,10 @@ export default {
       color: $main-color-active;
     }
   }
+}
+.loading{
+  position: absolute;
+  left: 50%;
+  top: px2rem(550);
 }
 </style>

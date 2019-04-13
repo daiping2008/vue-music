@@ -31,6 +31,7 @@ export default {
 
 .line-spin-fade-loader {
   position: relative;
+  transform: scale(.6);
   top: -10px;
   left: -4px; }
   .line-spin-fade-loader > div:nth-child(1) {
