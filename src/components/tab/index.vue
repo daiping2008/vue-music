@@ -36,7 +36,7 @@ export default {
     height: 100%;
     @include center();
     color: $main-color;
-    font-size: px2rem(30);
+    font-size: px2rem(36);
     font-weight: 700;
     span{
       display: flex;
