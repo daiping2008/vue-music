@@ -3,7 +3,7 @@
     <div class="search-bar">
       <i class="iconfont">&#xe60a;</i>
       <input @keyup.enter="bindKeyup" v-model="q" type="text" placeholder="搜索歌曲，歌手" name="" id="">
-      <i class="iconfont">&#xe6b2;</i>
+      <i @click="clear" class="iconfont">&#xe6b2;</i>
     </div>
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
   methods: {
     bindKeyup () {
       this.$emit('bindIuput', this.q)
+    },
+    clear () {
+      this.$emit('clear')
     }
   },
   watch: {
@@ -35,7 +38,7 @@ export default {
   .search-bar{
     display: flex;
     flex-direction: row;
-    height: px2rem(120);
+    height: px2rem(100);
     background-color: $main-bg1;
     color: $main-color;
     padding: 0 px2rem(30);

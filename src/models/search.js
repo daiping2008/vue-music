@@ -9,7 +9,14 @@ class SearchModel extends HTTP {
   getSearchSuggest (q) {
     return this.request(`/search/suggest?keywords=${q}`)
   }
-
+  clearHis () {
+    localStorage.removeItem(_CLOUD_MUSIC_HIS_)
+  }
+  delHis (index) {
+    const arr = this.getHis()
+    arr.splice(index, 1)
+    localStorage.setItem(_CLOUD_MUSIC_HIS_, JSON.stringify(arr))
+  }
   getHis () {
     return JSON.parse(localStorage.getItem(_CLOUD_MUSIC_HIS_))
   }

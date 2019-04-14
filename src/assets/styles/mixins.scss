@@ -9,3 +9,8 @@ $ration: 375 / 10;
   justify-content: center;
   align-items: center;
 }
+
+@mixin left() {
+  justify-content: left;
+  align-items: center;
+}
